@@ -5,7 +5,7 @@ import Sidebar from "./components/SideBar/SideBar";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import CreateContact from "./components/Contact/CreateContact";
+import CreateContact from "./components/Contact/CreateAndUpdateContact";
 import ContactDetails from "./components/Contact/ContactDetails";
 import LineGraph from "./components/ChartsAndMaps/LineGraph";
 import Map from "./components/ChartsAndMaps/Map";

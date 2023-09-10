@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import Loading from "../utils/Loading";
+import ErrorComponent from '../utils/Error'
 import {
   Chart as ChartJS,
   ArcElement,
@@ -13,9 +15,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { ApiResponse } from "../types/map.type";
+import { ApiResponse, ChartDataset } from "../../types/map.type";
 
-ChartJS.register(
+ChartJS.register(         // registering chartjs 
   ArcElement,
   CategoryScale,
   LinearScale,
@@ -36,18 +38,11 @@ const fetchLineData = async (): Promise<ApiResponse> => {
     throw new Error("Failed to fetch data");
   }
 };
-interface ChartDataset {
-  label: string;
-  data: number[];
-  fill: boolean;
-  borderColor: string;
-  backgroundColor: string;
-}
 
 function LineGraph() {
   const [chartData, setChartData] = useState<{
     labels: string[];
-    datasets: ChartDataset[]; // Use the ChartDataset interface here
+    datasets: ChartDataset[]; 
   }>({ labels: [], datasets: [] });
   const { data, isLoading, isError } = useQuery<ApiResponse>(
     "chart-data",
@@ -57,7 +52,6 @@ function LineGraph() {
   useEffect(() => {
     if (data) {
       const { cases, deaths } = data;
-      console.log(data,cases, deaths);
       setChartData({
         labels: Object.keys(cases).map((item) => item),
         datasets: [
@@ -80,25 +74,8 @@ function LineGraph() {
     }
   }, [data]);
 
-  if (isLoading) {
-    return (
-      <div className="flex h-full text-4xl font-bold">
-        <span className="m-auto transform transition-transform hover:scale-110">
-          Loading...
-        </span>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className="flex h-full text-4xl font-bold">
-        <span className="m-auto transform transition-transform hover:scale-110">
-          Error fetching data.
-        </span>
-      </div>
-    );
-  }
+  if (isLoading) return <Loading/>
+  if (isError) return <ErrorComponent/>
 
   return (
     <div className="LineGraph grow flex justify-center mt-10">

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { stateType } from "../types/contacts.type";
+import { stateType } from "../../types/contacts.type";
 import { useParams } from "react-router-dom";
 
 const ContactDetails = () => {

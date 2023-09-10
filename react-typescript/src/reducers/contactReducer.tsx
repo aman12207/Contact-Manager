@@ -1,10 +1,9 @@
 import {
   CREATE_CONTACT_REQUEST,
   UPDATE_CONTACT_REQUEST,
-  DELETE_CONTACT_REQUEST,
-  GET_CONTACT_DETAILS,
+  DELETE_CONTACT_REQUEST
 } from "../constants/contactConstants";
-import { ContactPayload } from "../components/types/contacts.type";
+import { ContactPayload } from "../types/contacts.type";
 
 export const contactReducer = (state = { contacts: [] }, action: any) => {
   switch (action.type) {
@@ -33,17 +32,6 @@ export const contactReducer = (state = { contacts: [] }, action: any) => {
         ...state,
         contacts: ContactsAfterDeletion,
       };
-
-    case GET_CONTACT_DETAILS:
-      const contactId = action.payload;
-      const ContactDetails = state.contacts.filter(
-        (contact: ContactPayload) => contact.id === contactId
-      );
-      return {
-        ...state,
-        contacts: ContactDetails,
-      };
-
     default:
       return state;
   }

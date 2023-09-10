@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createContact, updateContact } from "../../actions/contactActions";
 import { useParams, useNavigate } from "react-router-dom";
-import { ContactPayload, stateType } from "../types/contacts.type";
+import { ContactPayload, stateType } from "../../types/contacts.type";
 import { Dispatch } from "redux";
 
-const CreateContact: React.FC = () => {
+const CreateContact: React.FC = () => {   // it is dynamic component which handles both create and update functionality
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -40,7 +40,6 @@ const CreateContact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     if (id) {
       const data: ContactPayload = {
         id: parseInt(id),

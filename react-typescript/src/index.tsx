@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import 'chartjs-adapter-date-fns'; // Import the date-fns adapter for Chart.js
 
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -13,4 +12,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-

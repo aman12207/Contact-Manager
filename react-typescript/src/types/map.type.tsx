@@ -43,3 +43,11 @@ export interface ApiResponse {
   deaths: DateCases;
   recovered: DateCases;
 }
+
+export interface ChartDataset {
+  label: string;
+  data: number[];
+  fill: boolean;
+  borderColor: string;
+  backgroundColor: string;
+}

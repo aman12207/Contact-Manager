@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { stateType } from "../types/contacts.type";
+import { stateType } from "../../types/contacts.type";
 import ContactCard from "./ContactCard";
 import { RxCrossCircled } from "react-icons/rx";
 
@@ -30,7 +30,7 @@ const Contacts = () => {
           ))}
         </div>
       ) : (
-        <div className=" flex flex-row items-center border rounded p-4 text-center font-bold text-3xl">
+        <div className=" flex bg-whiteborder rounded-lg shadow-md flex-row items-center border rounded p-4 text-center font-bold text-3xl">
           <RxCrossCircled size={90} className=" mr-5" />
           <div>
             <span>No Contact found</span>
