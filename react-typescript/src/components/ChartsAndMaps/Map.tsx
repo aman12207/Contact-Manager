@@ -27,13 +27,16 @@ export default function Map() {
   const { data, isLoading } = useQuery<locations>("map-data", fetchMapData);
   if (isLoading)
     return (
-      <div className="flex justify-center items-center h-screen text-3xl m-auto">
-        Loading...
+      <div className="flex  h-full text-4xl font-bold">
+        <span className="m-auto transform transition-transform hover:scale-110">
+          Loading...
+        </span>
       </div>
     );
   return (
-    <div className="flex m-9 ml-12 w-100">
-      <MapContainer center={[0, 0]} zoom={2}>
+    <div className="grow">
+      <div className="flex m-9 ml-12 w-100">
+      <MapContainer className="m-auto" center={[0, 0]} zoom={2}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -42,7 +45,7 @@ export default function Map() {
           chunkedLoading
           iconCreateFunction={createClusterCustomIcon}
         >
-          {data?.data.map(
+          {data?.data?.map(
             ({ country, countryInfo, active, recovered, deaths }, index) => (
               <Marker
                 key={index}
@@ -64,6 +67,7 @@ export default function Map() {
           )}
         </MarkerClusterGroup>
       </MapContainer>
+    </div>
     </div>
   );
 }

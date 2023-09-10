@@ -35,3 +35,11 @@ export type locations = {
   data: CountryData[]
 };
 
+
+type DateCases = Record<string, number>;
+
+export interface ApiResponse {
+  cases: DateCases;
+  deaths: DateCases;
+  recovered: DateCases;
+}
